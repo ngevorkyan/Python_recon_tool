@@ -3,6 +3,10 @@ from asciistuff import Lolcat, Banner
 from termcolor import colored
 import socket
 import requests
+import json
+from datetime import datetime
+
+
 
 
 def display_greet():
@@ -29,14 +33,12 @@ def display_greet():
     )
     print("\n")
 
-
 def display_menu():
     print(colored("[1]", "green"), colored("Scan website", "dark_grey"))
     print(colored("[2]", "green"), colored("Check saved scans", "dark_grey"))
     print(colored("[3]", "green"), colored("Manual", "dark_grey"))
     print(colored("[4]", "green"), colored("Exit", "dark_grey"))
     print("\n")
-
 
 def user_inputs():
     while True:
@@ -54,6 +56,7 @@ def user_inputs():
             
         elif user_input == '4':
             print(colored('\nExiting the program... Goodbye!', 'red'))
+            break
             
         else:
             print(colored('Try Again', 'red'))  
@@ -70,19 +73,22 @@ def scan_website():
 
     try:
         #send therequest
-        response = requests.get(url, timeout=5)
+        response = requests.get(url, timeout=10)
         #get the status
         status = response.status_code
         #find domain
         domain = url.replace('http://', '').replace('https://', '').split('/')[0]
         #find ip adress
         ip_adress = socket.gethostbyname(domain)
+        #scan time
+        scan_time = datetime.now()
         #data to scan
         scan_data = {
             'url':url,
             'status':status,
             'ip_address':ip_adress,
-            'header':dict(response.headers)
+            'scan_time': scan_time.strftime("%Y-%m-%d %H:%M:%S"),
+            'header':dict(response.headers),
         }
         
         #results
@@ -95,7 +101,8 @@ def scan_website():
             ['IP Adrress', ip_adress],
             ['Server', response.headers.get("Server", "Unknown")],
             ['Content Type', response.headers.get("Content-Type", "Unknown")],
-            ['X-Powered-By', 'Unknown']
+            ['X-Powered-By', 'Unknown'],
+            ['scan_time', scan_time.strftime("%Y-%m-%d %H:%M:%S")]
         ]
         
         print(tabulate(table, headers=["Field", "Value"], tablefmt="grid"))
@@ -107,34 +114,65 @@ def scan_website():
         print(colored(f"Error: {e}", 'red'))
 
 def save_scan_result(data):
-    pass
-
+    try:
+        with open('saved_scans.json', 'r') as file:
+            saved_data = json.load(file)       
+    except FileNotFoundError:
+        saved_data = []
+        
+    saved_data.append(data)
+            
+    with open('saved_scans.json', 'w') as file:
+        json.dump(saved_data, file, indent = 4)
+        
+    print(colored("[+] Scan saved to saved_scans.json\n", "green"))
+            
 def check_saved_scans():
-    pass
+    try:
+        with open("saved_scans.json", 'r') as file:
+            data = json.load(file)
+            
+        if not data:
+            print(colored("No saved scans found.\n", "red")) 
+            
+        print(colored("\n===== SAVED SCANS =====\n", "cyan"))
+        rows = []
+        for entry in data:
+            rows.append(
+                [
+                entry["url"],
+                entry["status"],
+                entry["ip_address"],
+                entry["scan_time"]
+            ]
+            )
+            
+        print(tabulate(rows, headers=["URL", "Status Code", "IP", "Scan Time"], tablefmt="grid"))
+
+    except FileNotFoundError:
+        print(colored("No saved scans file found.\n", "red"))
 
 def display_manual():
     print(colored("\n========== RECON TOOL MANUAL ==========\n", "cyan"))
 
     print(colored("1. Scan website", "yellow"))
-    print("   • Perform basic reconnaissance on a target URL.")
-    print("   • Examples: HTTP headers, status code, IP lookup, etc.")
+    print("   - Perform basic reconnaissance on a target URL.")
+    print("   - Examples: HTTP headers, status code, IP lookup, etc.")
     print()
 
     print(colored("2. Check saved scans", "yellow"))
-    print("   • View previously saved scan results.")
-    print("   • Stored in a JSON or text file (your choice).")
+    print("   - View previously saved scan results, stored in a JSON file.")
     print()
 
     print(colored("3. Manual", "yellow"))
-    print("   • Shows the help page. (You are on it right now!)")
+    print("   - See the help page. (You are on it right now!)")
     print()
 
     print(colored("4. Exit", "yellow"))
-    print("   • Quit the tool.")
+    print("   - Quit the tool.")
     print()
 
     print(colored("========================================\n", "cyan"))
-
 
 
 display_greet()

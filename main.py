@@ -131,7 +131,7 @@ def check_saved_scans():
             data = json.load(file)
             
         if not data:
-            print(colored("No saved scans found.\n", "red")) 
+            print(colored("No saved scans yet.\n", "red")) 
             
         print(colored("\n===== SAVED SCANS =====\n", "cyan"))
         rows = []

@@ -215,5 +215,39 @@
             "X-GitHub-Request-Id": "04E3:235FE0:5EF6614:521979D:692DFBED",
             "Transfer-Encoding": "chunked"
         }
+    },
+    {
+        "url": "https://chatgpt.com/c/692df4b0-4c60-832c-a316-407102362e88",
+        "status": 403,
+        "ip_address": "172.64.155.209",
+        "scan_time": "2025-12-02 00:47:09",
+        "header": {
+            "Date": "Mon, 01 Dec 2025 20:47:09 GMT",
+            "Content-Type": "text/html; charset=UTF-8",
+            "Transfer-Encoding": "chunked",
+            "Connection": "close",
+            "accept-ch": "Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA",
+            "cf-mitigated": "challenge",
+            "critical-ch": "Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA",
+            "cross-origin-embedder-policy": "require-corp",
+            "cross-origin-resource-policy": "same-origin",
+            "origin-agent-cluster": "?1",
+            "permissions-policy": "accelerometer=(),browsing-topics=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),interest-cohort=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=()",
+            "server-timing": "chlray;desc=\"9a757026e9722dcf\"",
+            "x-content-type-options": "nosniff",
+            "x-frame-options": "SAMEORIGIN",
+            "Cache-Control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
+            "Expires": "Thu, 01 Jan 1970 00:00:01 GMT",
+            "Set-Cookie": "__cf_bm=jg_7j769xA8sIeXHg72rVh7PYyygZrgfUu60GKXxf3E-1764622029-1.0.1.1-XplvJCTAE10W3eQS2dWXfAMCKYR.tf46FHC9tGg3qp_yRbCjcl32gTcrxsc93Qee23JSho53QpPoE8obqLudvP0dWSDJxXzUZUJxRPiX_Zg; path=/; expires=Mon, 01-Dec-25 21:17:09 GMT; domain=.chatgpt.com; HttpOnly; Secure; SameSite=None",
+            "Report-To": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=asaVqISAxIumcQt4%2Bjs%2BRRtz2CuUokk7Ud0n8nHe5kiiZn7%2Ftqnw12urAErVF%2BzANIx8I5jRXFFfxdYsvLRtJvssK6a2G87mwOLDLRwxxP4OetW0giPoNMW6j%2FE%2B\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+            "NEL": "{\"success_fraction\":0.01,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+            "Vary": "Accept-Encoding",
+            "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+            "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
+            "Referrer-Policy": "strict-origin-when-cross-origin",
+            "Server": "cloudflare",
+            "CF-RAY": "9a757026e9722dcf-TBS",
+            "Content-Encoding": "gzip"
+        }
     }
 ]

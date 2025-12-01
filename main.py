@@ -100,7 +100,7 @@ def scan_website():
             ['Server', response.headers.get("Server", "Unknown")],
             ['Content Type', response.headers.get("Content-Type", "Unknown")],
             ['X-Powered-By', 'Unknown'],
-            ['scan_time', scan_time.strftime("%Y-%m-%d %H:%M:%S")]
+            ['Scan time', scan_time.strftime("%Y-%m-%d %H:%M:%S")]
         ]
         
         print(tabulate(table, headers=["Field", "Value"], tablefmt="grid"))

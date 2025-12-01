@@ -1,6 +1,8 @@
-import tabulate
+from tabulate import tabulate
 from asciistuff import Lolcat, Banner
 from termcolor import colored
+import socket
+import requests
 
 
 def display_greet():
@@ -59,6 +61,52 @@ def user_inputs():
         display_menu()
         
 def scan_website():
+    url = input('Input the url: ')
+    
+    if not url.startswith('https'):
+        'https://' + url
+        
+    print(colored("\n[+] Scanning... Please wait...\n", "cyan"))
+
+    try:
+        #send therequest
+        response = requests.get(url, timeout=5)
+        #get the status
+        status = response.status_code
+        #find domain
+        domain = url.replace('http://', '').replace('https://', '').split('/')[0]
+        #find ip adress
+        ip_adress = socket.gethostbyname(domain)
+        #data to scan
+        scan_data = {
+            'url':url,
+            'status':status,
+            'ip_address':ip_adress,
+            'header':dict(response.headers)
+        }
+        
+        #results
+        print(colored("========= Scan Results =========\n", "green"))
+        
+        table = [
+            ['URL', url],
+            ['Status Code', status],
+            ['Domain', domain],
+            ['IP Adrress', ip_adress],
+            ['Server', response.headers.get("Server", "Unknown")],
+            ['Content Type', response.headers.get("Content-Type", "Unknown")],
+            ['X-Powered-By', 'Unknown']
+        ]
+        
+        print(tabulate(table, headers=["Field", "Value"], tablefmt="grid"))
+        
+        save_scan_result(scan_data)
+        
+    
+    except Exception as e:
+        print(colored(f"Error: {e}", 'red'))
+
+def save_scan_result(data):
     pass
 
 def check_saved_scans():

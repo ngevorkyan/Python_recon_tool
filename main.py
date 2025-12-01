@@ -7,14 +7,12 @@ import json
 from datetime import datetime
 
 
-
-
 def display_greet():
     print(Lolcat(Banner("recon tool")))
     print(colored("Made by:", "blue"), colored("@ngevorkyan & @DarkLordGeo", "yellow"))
     print(
         colored("Libraries: ", "blue"),
-        colored("[colored , tabulate, asciistuff]", "yellow"),
+        colored("[colored , tabulate, asciistuff, datetime, json, requests, socket ]", "yellow"),
     )
     print(
         colored("Version: ", "blue"),

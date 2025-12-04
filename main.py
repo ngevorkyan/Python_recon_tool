@@ -179,8 +179,13 @@ def display_manual():
     print(colored("========================================\n", "cyan"))
 
 
-display_greet()
-display_menu()
-user_inputs()
+def main():
+    display_greet()
+    display_menu()
+    user_inputs()
+
+if __name__ == "__main__":
+    main()
+
 
 

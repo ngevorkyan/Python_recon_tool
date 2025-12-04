@@ -6,7 +6,7 @@ import requests
 import json
 from datetime import datetime
 
-
+#GREETING TO THE USER UI
 def display_greet():
     print(Lolcat(Banner("recon tool")))
     print(colored("Made by:", "blue"), colored("@ngevorkyan & @DarkLordGeo", "yellow"))
@@ -31,6 +31,7 @@ def display_greet():
     )
     print("\n")
 
+#MENU BAR
 def display_menu():
     print(colored("[1]", "green"), colored("Scan website", "dark_grey"))
     print(colored("[2]", "green"), colored("Check saved scans", "dark_grey"))
@@ -38,6 +39,7 @@ def display_menu():
     print(colored("[4]", "green"), colored("Exit", "dark_grey"))
     print("\n")
 
+#USER INPUT AND NAVIGATION INTO THE TOOL
 def user_inputs():
     while True:
         user_input = input(colored("> ", "yellow"))
@@ -61,6 +63,7 @@ def user_inputs():
             
         display_menu()
         
+#SCANNING THE PROGRAM
 def scan_website():
     url = input('Input the url: ')
     
@@ -111,6 +114,7 @@ def scan_website():
     except Exception as e:
         print(colored(f"Error: {e}", 'red'))
 
+#SAVING THE RESULT VIA JSON FILE
 def save_scan_result(data):
     try:
         with open('saved_scans.json', 'r') as file:
@@ -124,7 +128,8 @@ def save_scan_result(data):
         json.dump(saved_data, file, indent = 4)
         
     print(colored("[+] Scan saved to saved_scans.json\n", "green"))
-            
+
+#VIEWING SAVED SCAN RESULTS IN A TABLE          
 def check_saved_scans():
     try:
         with open("saved_scans.json", 'r') as file:
@@ -150,6 +155,7 @@ def check_saved_scans():
     except FileNotFoundError:
         print(colored("No saved scans file found.\n", "red"))
 
+#MANUAL FOR THE USER
 def display_manual():
     print(colored("\n========== RECON TOOL MANUAL ==========\n", "cyan"))
 
